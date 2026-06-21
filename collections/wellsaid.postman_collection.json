@@ -1,0 +1,564 @@
+{
+  "item": [
+    {
+      "id": "c37acae3-e5d2-4c6b-8711-0da55e5ea773",
+      "name": "Text-to-Speech",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "85590482-85d3-4609-b014-deaa08cac0e6",
+          "name": "Render text to speech as an audio stream.",
+          "request": {
+            "name": "Render text to speech as an audio stream.",
+            "description": {},
+            "url": {
+              "path": [
+                "v1",
+                "tts",
+                "stream"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "audio/mpeg"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"speaker_id\": 50,\n  \"text\": \"I love building and shipping new features for our users!\",\n  \"model\": \"caruso\",\n  \"library_ids\": []\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": []
+        },
+        {
+          "id": "521e0d6b-3dd9-4102-b978-faf066438e05",
+          "name": "Create a new TTS clip asynchronously.",
+          "request": {
+            "name": "Create a new TTS clip asynchronously.",
+            "description": {},
+            "url": {
+              "path": [
+                "v1",
+                "tts",
+                "clips"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"speaker_id\": 50,\n  \"text\": \"I love building and shipping new features for our users!\",\n  \"model\": \"caruso\",\n  \"library_ids\": []\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": []
+        },
+        {
+          "id": "203e21fd-0dfa-4bd1-986b-3f5ed6c10ca6",
+          "name": "Render text to speech with timing information and subtitles.",
+          "request": {
+            "name": "Render text to speech with timing information and subtitles.",
+            "description": {},
+            "url": {
+              "path": [
+                "v1",
+                "tts",
+                "word-timing"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"speaker_id\": 50,\n  \"text\": \"I love building and shipping new features for our users!\",\n  \"model\": \"caruso\",\n  \"library_ids\": []\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "id": "ab5030cb-dad0-46a9-86a8-dff3aba5a454",
+      "name": "Clips",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "9722ab38-b68c-4bef-9815-86ec9bb9b065",
+          "name": "Get a list of recent clips.",
+          "request": {
+            "name": "Get a list of recent clips.",
+            "description": {},
+            "url": {
+              "path": [
+                "v1",
+                "tts",
+                "clips"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [],
+            "method": "GET",
+            "auth": null
+          },
+          "response": []
+        },
+        {
+          "id": "c382a330-fc72-4cc3-bc54-716ca9a9656b",
+          "name": "Get information about a single clip.",
+          "request": {
+            "name": "Get information about a single clip.",
+            "description": {},
+            "url": {
+              "path": [
+                "v1",
+                "tts",
+                "clips",
+                ":clip-id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [],
+            "method": "GET",
+            "auth": null
+          },
+          "response": []
+        },
+        {
+          "id": "72dd049f-866a-491e-9ab9-2b6582899185",
+          "name": "Combine a list of clips into a single file with pauses.",
+          "request": {
+            "name": "Combine a list of clips into a single file with pauses.",
+            "description": {},
+            "url": {
+              "path": [
+                "v1",
+                "tts",
+                "clips",
+                "combine"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"clip_ids\": [\n    \"<string>\"\n  ],\n  \"pause\": 0.5\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "id": "9cd6a57e-68e3-4475-a6c9-e66c89833370",
+      "name": "Voices",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "ad454cbb-86ee-403b-aca7-30e58a6e4ef3",
+          "name": "Get available voice avatars.",
+          "request": {
+            "name": "Get available voice avatars.",
+            "description": {},
+            "url": {
+              "path": [
+                "v1",
+                "tts",
+                "avatars"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [],
+            "method": "GET",
+            "auth": null
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "id": "c3cbed30-9c33-4ccc-b5a8-3c13591e40ed",
+      "name": "Pronunciation",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "50ec2dad-4776-4d31-83af-18c08b4c418f",
+          "name": "Get respelling suggestions.",
+          "request": {
+            "name": "Get respelling suggestions.",
+            "description": {},
+            "url": {
+              "path": [
+                "v1",
+                "tts",
+                "respelling-suggestions"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [],
+            "method": "GET",
+            "auth": null
+          },
+          "response": []
+        },
+        {
+          "id": "effcdc2c-c171-4b8c-b3cc-7d018c6b6895",
+          "name": "Get list of available replacement libraries.",
+          "request": {
+            "name": "Get list of available replacement libraries.",
+            "description": {},
+            "url": {
+              "path": [
+                "v1",
+                "tts",
+                "replacement-libraries"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [],
+            "method": "GET",
+            "auth": null
+          },
+          "response": []
+        },
+        {
+          "id": "b9a47035-acb5-4cb3-954a-a91b3ee16a56",
+          "name": "Create a new replacement library.",
+          "request": {
+            "name": "Create a new replacement library.",
+            "description": {},
+            "url": {
+              "path": [
+                "v1",
+                "tts",
+                "replacement-libraries"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": []
+        },
+        {
+          "id": "33dbd7a5-dfbc-49dd-8503-95047c46fb1a",
+          "name": "Get information about a single replacement library.",
+          "request": {
+            "name": "Get information about a single replacement library.",
+            "description": {},
+            "url": {
+              "path": [
+                "v1",
+                "tts",
+                "replacement-libraries",
+                ":library-id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [],
+            "method": "GET",
+            "auth": null
+          },
+          "response": []
+        },
+        {
+          "id": "bc0a7599-1d73-4400-92f0-43051ad5c1df",
+          "name": "Delete a replacement library.",
+          "request": {
+            "name": "Delete a replacement library.",
+            "description": {},
+            "url": {
+              "path": [
+                "v1",
+                "tts",
+                "replacement-libraries",
+                ":library-id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [],
+            "method": "DELETE",
+            "auth": null
+          },
+          "response": []
+        },
+        {
+          "id": "ef105332-b7ff-4126-bc4d-d572a3b22230",
+          "name": "Get list of replacements in a library.",
+          "request": {
+            "name": "Get list of replacements in a library.",
+            "description": {},
+            "url": {
+              "path": [
+                "v1",
+                "tts",
+                "replacement-libraries",
+                ":library-id",
+                "replacements"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [],
+            "method": "GET",
+            "auth": null
+          },
+          "response": []
+        },
+        {
+          "id": "11d95f81-b0e8-48d9-b797-a0b0f9cc64a1",
+          "name": "Create a new replacement in a library.",
+          "request": {
+            "name": "Create a new replacement in a library.",
+            "description": {},
+            "url": {
+              "path": [
+                "v1",
+                "tts",
+                "replacement-libraries",
+                ":library-id",
+                "replacements"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"original\": \"<string>\",\n  \"replacement\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": []
+        },
+        {
+          "id": "38a2e24f-c9dd-4f4f-bb03-00c7edab7fe5",
+          "name": "Get details of a replacement.",
+          "request": {
+            "name": "Get details of a replacement.",
+            "description": {},
+            "url": {
+              "path": [
+                "v1",
+                "tts",
+                "replacement-libraries",
+                ":library-id",
+                "replacements",
+                ":replacement-id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [],
+            "method": "GET",
+            "auth": null
+          },
+          "response": []
+        },
+        {
+          "id": "8cb4c88e-e979-4372-b2de-f64ee7f7f7f3",
+          "name": "Delete a replacement.",
+          "request": {
+            "name": "Delete a replacement.",
+            "description": {},
+            "url": {
+              "path": [
+                "v1",
+                "tts",
+                "replacement-libraries",
+                ":library-id",
+                "replacements",
+                ":replacement-id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [],
+            "method": "DELETE",
+            "auth": null
+          },
+          "response": []
+        }
+      ]
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.wellsaidlabs.com",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "X-Api-Key"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "header"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "d3518583-d2f6-4fc5-9c21-dda1e8e7a702",
+    "name": "WellSaid Labs API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "REST API for WellSaid Labs AI text-to-speech.\n\nContact Support:\n Name: WellSaid Labs Support\n URL: https://docs.wellsaidlabs.com",
+      "type": "text/plain"
+    }
+  }
+}

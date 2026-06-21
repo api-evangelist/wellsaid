@@ -1,0 +1,106 @@
+aid: wellsaid
+url: https://raw.githubusercontent.com/api-evangelist/wellsaid/refs/heads/main/apis.yml
+name: WellSaid Labs
+kind: company
+description: WellSaid Labs is an AI text-to-speech voice platform. Its REST API renders
+  natural-sounding speech from text using studio-quality voice avatars, supporting
+  synchronous clip creation, low-latency audio streaming, and word-level timing with
+  subtitles, authenticated with an X-Api-Key header.
+image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+tags:
+- AI
+- Text to Speech
+- Voice
+- Audio
+- TTS
+created: '2026-06-21'
+modified: '2026-06-21'
+specificationVersion: '0.19'
+apis:
+- aid: wellsaid:wellsaid-text-to-speech-api
+  name: WellSaid Text-to-Speech API
+  tags:
+  - Text to Speech
+  - Audio
+  - Clips
+  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+  humanURL: https://docs.wellsaidlabs.com/reference/getting-started-with-your-api
+  baseURL: https://api.wellsaidlabs.com/v1
+  properties:
+  - url: https://docs.wellsaidlabs.com/reference/getting-started-with-your-api
+    type: Documentation
+  - url: https://docs.wellsaidlabs.com/reference
+    type: APIReference
+  - url: openapi/wellsaid-openapi.yml
+    type: OpenAPI
+  - url: collections/wellsaid.postman_collection.json
+    type: PostmanCollection
+  - url: collections/wellsaid.opencollection.json
+    type: OpenCollection
+  description: Render text to speech using studio-quality voice avatars. Create clips
+    asynchronously (POST /tts/clips), list and retrieve rendered clips, and combine
+    multiple clips into a single file with custom pauses.
+- aid: wellsaid:wellsaid-streaming-tts-api
+  name: WellSaid Streaming TTS API
+  tags:
+  - Streaming
+  - Text to Speech
+  - Audio
+  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+  humanURL: https://docs.wellsaidlabs.com/reference/ttsstream
+  baseURL: https://api.wellsaidlabs.com/v1
+  properties:
+  - url: https://docs.wellsaidlabs.com/reference/ttsstream
+    type: Documentation
+  - url: https://docs.wellsaidlabs.com/reference
+    type: APIReference
+  - url: openapi/wellsaid-openapi.yml
+    type: OpenAPI
+  - url: collections/wellsaid.postman_collection.json
+    type: PostmanCollection
+  - url: collections/wellsaid.opencollection.json
+    type: OpenCollection
+  description: Low-latency streaming text-to-speech (POST /tts/stream) that returns
+    an audio/mpeg (MP3) stream as the render is produced, plus word-timing renders
+    (POST /tts/word-timing) returning audio with JSON/SRT/VTT subtitle timing.
+- aid: wellsaid:wellsaid-voices-speakers-api
+  name: WellSaid Voices and Speakers API
+  tags:
+  - Voices
+  - Speakers
+  - Avatars
+  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+  humanURL: https://docs.wellsaidlabs.com/reference/available-voice-avatars
+  baseURL: https://api.wellsaidlabs.com/v1
+  properties:
+  - url: https://docs.wellsaidlabs.com/reference/available-voice-avatars
+    type: Documentation
+  - url: https://docs.wellsaidlabs.com/reference
+    type: APIReference
+  - url: openapi/wellsaid-openapi.yml
+    type: OpenAPI
+  - url: collections/wellsaid.postman_collection.json
+    type: PostmanCollection
+  - url: collections/wellsaid.opencollection.json
+    type: OpenCollection
+  description: List available voice avatars (GET /tts/avatars) with their speaker_id,
+    name, accent, and speaking style for selecting a voice, plus respelling suggestions
+    and replacement libraries that shape pronunciation across renders.
+common:
+- type: GitHubOrganization
+  url: https://github.com/wellsaid-labs
+- type: LinkedIn
+  url: https://www.linkedin.com/company/wellsaid-labs
+- type: Website
+  url: https://wellsaidlabs.com
+- type: Documentation
+  url: https://docs.wellsaidlabs.com
+- type: Plans
+  url: plans/wellsaid-plans-pricing.yml
+- type: RateLimits
+  url: rate-limits/wellsaid-rate-limits.yml
+- type: FinOps
+  url: finops/wellsaid-finops.yml
+maintainers:
+- FN: Kin Lane
+  email: kin@apievangelist.com

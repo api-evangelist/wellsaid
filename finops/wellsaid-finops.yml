@@ -1,0 +1,107 @@
+specification: FinOps Framework
+specificationVersion: '1.0'
+schema: https://www.finops.org/framework/
+provider: WellSaid Labs
+providerId: wellsaid
+created: '2026-06-21'
+modified: '2026-06-21'
+reconciled: false
+tags:
+- AI
+- Text to Speech
+- Voice
+- Audio
+- TTS
+- FinOps
+- Cost Management
+- FOCUS
+description: >-
+  FinOps view of WellSaid Labs spend. WellSaid bills primarily through
+  subscription tiers (seats plus download/render allowances) for Studio, with
+  programmatic API access offered as a paid / Enterprise capability. The natural
+  usage meter for the text-to-speech API is characters rendered (a render
+  request accepts up to 1,000 characters), but no public per-character API rate
+  card is published; API cost is negotiated as part of an Enterprise agreement.
+notes: >-
+  Per-character API pricing and any render/download allowances are not publicly
+  documented; verify metering and unit rates with WellSaid Labs during
+  reconciliation. Track characters rendered and clips/streams produced as the
+  primary cost drivers.
+sources:
+- https://wellsaidlabs.com/pricing/
+- https://docs.wellsaidlabs.com/reference/getting-started-with-your-api
+- https://focus.finops.org/focus-specification/v1-3/
+alignedWith:
+  framework: FinOps Foundation Framework
+  frameworkUrl: https://www.finops.org/framework/
+  dataSpec: FOCUS
+  dataSpecVersion: '1.3'
+  dataSpecUrl: https://focus.finops.org/focus-specification/v1-3/
+publisherName: WellSaid Labs
+serviceCategory: AI and Machine Learning
+billingModel:
+  pricingCategory: Subscription
+  billingFrequency: Monthly
+  billingCurrency: USD
+  chargeCategories:
+  - Usage
+  - Purchase
+  - Adjustment
+focusColumns:
+  ServiceName: WellSaid Labs API
+  ServiceCategory: AI and Machine Learning
+  ProviderName: WellSaid Labs
+  PublisherName: WellSaid Labs
+  InvoiceIssuerName: WellSaid Labs
+  BillingCurrency: USD
+  ChargeCategory: Usage
+  PricingCategory: Subscription
+meters:
+- name: tts_characters
+  description: Characters of text rendered to speech via the API, the natural per-character cost driver (up to 1,000 characters per request).
+  unit: characters
+  aggregation: sum
+  dimensions:
+  - account
+  - speaker_id
+  - model
+- name: clips_rendered
+  description: Number of TTS clips created via POST /tts/clips.
+  unit: clips
+  aggregation: sum
+  dimensions:
+  - account
+  - speaker_id
+- name: stream_renders
+  description: Number of streaming TTS renders via POST /tts/stream.
+  unit: renders
+  aggregation: sum
+  dimensions:
+  - account
+  - speaker_id
+- name: word_timing_renders
+  description: Number of word-timing renders via POST /tts/word-timing (audio plus JSON/SRT/VTT).
+  unit: renders
+  aggregation: sum
+  dimensions:
+  - account
+  - speaker_id
+- name: seats
+  description: Subscription seats for Studio access, billed per seat per month.
+  unit: seats
+  aggregation: sum
+  dimensions:
+  - account
+  - plan
+principles:
+- name: Visibility
+  description: Track characters rendered and clips/streams produced per API key; reconcile against subscription seat and download allowances.
+- name: Allocation
+  description: Tag API keys per workload/team and map to internal cost centers; isolate Enterprise API spend from Studio seats.
+- name: Optimization
+  description: Keep render text concise within the 1,000-character cap, reuse clips and combine rather than re-rendering, and apply replacement libraries to avoid retry renders.
+- name: Accountability
+  description: Assign owners per project/key and review character/render volume monthly against the Enterprise agreement.
+maintainers:
+- FN: Kin Lane
+  email: kin@apievangelist.com

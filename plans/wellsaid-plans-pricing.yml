@@ -1,0 +1,115 @@
+specification: API Commons Plans
+specificationVersion: '0.1'
+schema: https://raw.githubusercontent.com/api-evangelist/interface-research/main/schema/api-commons.yml#/$defs/Plans
+provider: WellSaid Labs
+providerId: wellsaid
+created: '2026-06-21'
+modified: '2026-06-21'
+reconciled: false
+tags:
+- AI
+- Text to Speech
+- Voice
+- Audio
+- TTS
+- Plans
+description: >-
+  WellSaid Labs sells its Studio product through subscription tiers (Creative,
+  Team / Business, and Enterprise) primarily metered by downloads/renders and
+  seats rather than a published public per-character API rate. Programmatic API
+  access is provided to subscribers (a trial API key is issued on account
+  creation) and is positioned as an Enterprise / paid capability; the exact
+  per-character or per-render API price is not publicly documented and is
+  negotiated as part of an Enterprise agreement. Standard plan clips are capped
+  (commonly cited at 5,000 characters per clip); the API itself limits a single
+  render request to 1,000 characters of text.
+notes: >-
+  Subscription prices below are representative figures cited by third-party
+  pricing trackers and the WellSaid pricing page and change over time. No
+  official public per-character API rate card is published; API/Enterprise
+  pricing is quoted by sales. reconciled is false pending confirmation of
+  current tier prices and any per-character API metering directly from
+  WellSaid Labs.
+sources:
+- https://wellsaidlabs.com/pricing/
+- https://www.wellsaid.io/pricing
+- https://docs.wellsaidlabs.com/reference/getting-started-with-your-api
+plans:
+- id: wellsaid-creative
+  name: Creative
+  type: subscription
+  description: >-
+    Individual creator subscription for studio text-to-speech rendering and
+    downloads, English voices, with a per-year download/render allowance.
+  entries:
+  - label: Creative Subscription
+    name: creative
+    type: flat
+    metric: seat
+    limit: 1
+    timeFrame: month
+    geo: global
+    unit: 1
+    price: from ~$55/month (annual); ~720 downloads/year
+    userMultiplied: true
+  elements:
+  - name: Studio Text-to-Speech
+  - name: Voice Avatars (English)
+  - name: Clip Downloads
+- id: wellsaid-team
+  name: Team / Business
+  type: subscription
+  description: >-
+    Team subscription adding a shared workspace, multiple seats, higher
+    download allowance, and integrations.
+  entries:
+  - label: Team Subscription
+    name: team
+    type: flat
+    metric: seat
+    limit: -1
+    timeFrame: month
+    geo: global
+    unit: 1
+    price: from ~$160/month per user; ~1,300 downloads/year; 1-5 seats
+    userMultiplied: true
+  elements:
+  - name: Team Workspace
+  - name: Studio Text-to-Speech
+  - name: Integrations
+- id: wellsaid-enterprise
+  name: Enterprise
+  type: enterprise
+  description: >-
+    Custom Enterprise agreement covering API access, custom voice avatar
+    creation, higher volume, security, and support. Includes programmatic
+    text-to-speech API usage. Contact WellSaid Labs sales for pricing.
+  entries:
+  - label: Enterprise Agreement
+    name: enterprise
+    type: flat
+    metric: contract
+    limit: -1
+    timeFrame: year
+    geo: global
+    unit: 1
+    price: contact sales
+    userMultiplied: false
+  - label: API Usage
+    name: api_usage
+    type: usage
+    metric: characters
+    limit: -1
+    timeFrame: month
+    geo: global
+    unit: 1000000
+    price: not publicly documented (negotiated)
+    userMultiplied: false
+  elements:
+  - name: Text-to-Speech API
+  - name: Streaming TTS API
+  - name: Custom Voice Avatars
+  - name: Dedicated Support
+maintainers:
+- FN: Kin Lane
+  email: kin@apievangelist.com

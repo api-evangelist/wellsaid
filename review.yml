@@ -1,0 +1,83 @@
+aid: wellsaid
+name: WellSaid Labs
+review:
+  question: Does WellSaid Labs expose a documented public WebSocket API?
+  answer: false
+  date: '2026-06-21'
+  reviewer: API Evangelist
+  asyncapiSpecCreated: false
+  asyncapiScopeNote: |
+    Per current API Evangelist scope, HTTP Server-Sent Events (SSE) is
+    in-scope for AsyncAPI modeling. WellSaid Labs streaming TTS
+    (POST /tts/stream) is, however, delivered as a chunked HTTP audio/mpeg
+    (MP3) byte stream over a single REST request/response - it is not an
+    SSE event stream and not a WebSocket. There is no discrete event/message
+    surface to model, so no AsyncAPI document was created. If WellSaid
+    publishes a true SSE or WebSocket streaming surface in the future, an
+    AsyncAPI document should be added then.
+findings:
+  summary: |
+    WellSaid Labs does not publish a documented public WebSocket API. The
+    platform exposes REST (HTTPS) endpoints under
+    https://api.wellsaidlabs.com/v1, authenticated with an X-Api-Key header.
+    Text-to-speech "streaming" is provided by POST /tts/stream, which returns
+    a chunked audio/mpeg (MP3) byte stream as the render is produced - a
+    one-way HTTP streaming response over the standard REST endpoint, not an
+    SSE event stream and not a bidirectional WebSocket (ws:// or wss://).
+    No realtime WebSocket endpoint is documented for TTS, clips, or any other
+    product surface.
+  transports:
+    - protocol: REST
+      scheme: https
+      baseURL: https://api.wellsaidlabs.com/v1
+      documented: true
+    - protocol: HTTP Audio Stream
+      scheme: https
+      note: POST /tts/stream returns a chunked audio/mpeg (MP3) byte stream over the REST response. Not SSE, not WebSocket.
+      documented: true
+    - protocol: WebSocket
+      scheme: wss
+      documented: false
+      note: No WebSocket endpoint is documented in the WellSaid Labs API reference as of the review date.
+  endpointsConfirmedRest:
+    - POST https://api.wellsaidlabs.com/v1/tts/stream
+    - POST https://api.wellsaidlabs.com/v1/tts/clips
+    - GET  https://api.wellsaidlabs.com/v1/tts/clips
+    - GET  https://api.wellsaidlabs.com/v1/tts/clips/{clip-id}
+    - POST https://api.wellsaidlabs.com/v1/tts/clips/combine
+    - POST https://api.wellsaidlabs.com/v1/tts/word-timing
+    - GET  https://api.wellsaidlabs.com/v1/tts/avatars
+    - GET  https://api.wellsaidlabs.com/v1/tts/respelling-suggestions
+    - GET  https://api.wellsaidlabs.com/v1/tts/replacement-libraries
+    - POST https://api.wellsaidlabs.com/v1/tts/replacement-libraries
+    - GET  https://api.wellsaidlabs.com/v1/tts/replacement-libraries/{library-id}
+    - DELETE https://api.wellsaidlabs.com/v1/tts/replacement-libraries/{library-id}
+    - GET  https://api.wellsaidlabs.com/v1/tts/replacement-libraries/{library-id}/replacements
+    - POST https://api.wellsaidlabs.com/v1/tts/replacement-libraries/{library-id}/replacements
+    - GET  https://api.wellsaidlabs.com/v1/tts/replacement-libraries/{library-id}/replacements/{replacement-id}
+    - DELETE https://api.wellsaidlabs.com/v1/tts/replacement-libraries/{library-id}/replacements/{replacement-id}
+sources:
+  - url: https://docs.wellsaidlabs.com/reference/getting-started-with-your-api
+    type: Documentation
+    note: Base URL https://api.wellsaidlabs.com/v1 with X-Api-Key auth; all documented endpoints are HTTPS REST.
+  - url: https://docs.wellsaidlabs.com/reference/ttsstream
+    type: APIReference
+    note: POST /tts/stream returns audio/mpeg stream; documents X-Enable-SSML header and 200/400/401/429/508 responses. No WebSocket.
+  - url: https://docs.wellsaidlabs.com/llms.txt
+    type: Documentation
+    note: OpenAPI/markdown index listing TTS, clips, avatars, word-timing, respelling, and replacement-library endpoints. No WebSocket surface.
+  - url: https://github.com/wellsaid-labs/simple-api-example
+    type: SourceCode
+    note: Official example server calls POST https://api.wellsaidlabs.com/v1/tts/stream and /v1/tts/clips with X-Api-Key over HTTPS REST.
+actions:
+  asyncapiPath: null
+  apisYmlUpdated: true
+  reason: |
+    No WebSocket or SSE event surface exists. Streaming TTS is a chunked
+    HTTP audio byte stream over the REST POST /tts/stream endpoint, which is
+    captured in the OpenAPI specification (audio/mpeg binary response). No
+    AsyncAPI document was created because there is no event/message-oriented
+    streaming surface to model.
+maintainers:
+- FN: Kin Lane
+  email: kin@apievangelist.com

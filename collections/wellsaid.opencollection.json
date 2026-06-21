@@ -1,0 +1,249 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "WellSaid Labs API",
+    "version": "1.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "X-Api-Key",
+      "value": "{{apiKey}}",
+      "in": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Text-to-Speech",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Render text to speech as an audio stream.",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.wellsaidlabs.com/v1/tts/stream",
+            "body": {
+              "type": "json",
+              "data": "{\"speaker_id\": 50, \"text\": \"I love building and shipping new features for our users!\", \"model\": \"caruso\", \"library_ids\": []}"
+            }
+          },
+          "docs": "Render text to speech as an audio stream."
+        },
+        {
+          "info": {
+            "name": "Create a new TTS clip asynchronously.",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.wellsaidlabs.com/v1/tts/clips",
+            "body": {
+              "type": "json",
+              "data": "{\"speaker_id\": 50, \"text\": \"I love building and shipping new features for our users!\", \"model\": \"caruso\", \"library_ids\": []}"
+            }
+          },
+          "docs": "Create a new TTS clip asynchronously."
+        },
+        {
+          "info": {
+            "name": "Render text to speech with timing information and subtitles.",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.wellsaidlabs.com/v1/tts/word-timing",
+            "body": {
+              "type": "json",
+              "data": "{\"speaker_id\": 50, \"text\": \"I love building and shipping new features for our users!\", \"model\": \"caruso\", \"library_ids\": []}"
+            }
+          },
+          "docs": "Render text to speech with timing information and subtitles."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Clips",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get a list of recent clips.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.wellsaidlabs.com/v1/tts/clips"
+          },
+          "docs": "Get a list of recent clips."
+        },
+        {
+          "info": {
+            "name": "Get information about a single clip.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.wellsaidlabs.com/v1/tts/clips/{clip-id}"
+          },
+          "docs": "Get information about a single clip."
+        },
+        {
+          "info": {
+            "name": "Combine a list of clips into a single file with pauses.",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.wellsaidlabs.com/v1/tts/clips/combine",
+            "body": {
+              "type": "json",
+              "data": "{\"clip_ids\": [\"<string>\"], \"pause\": 0.5}"
+            }
+          },
+          "docs": "Combine a list of clips into a single file with pauses."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Voices",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get available voice avatars.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.wellsaidlabs.com/v1/tts/avatars"
+          },
+          "docs": "Get available voice avatars."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Pronunciation",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get respelling suggestions.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.wellsaidlabs.com/v1/tts/respelling-suggestions"
+          },
+          "docs": "Get respelling suggestions."
+        },
+        {
+          "info": {
+            "name": "Get list of available replacement libraries.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.wellsaidlabs.com/v1/tts/replacement-libraries"
+          },
+          "docs": "Get list of available replacement libraries."
+        },
+        {
+          "info": {
+            "name": "Create a new replacement library.",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.wellsaidlabs.com/v1/tts/replacement-libraries",
+            "body": {
+              "type": "json",
+              "data": "{\"name\": \"<string>\"}"
+            }
+          },
+          "docs": "Create a new replacement library."
+        },
+        {
+          "info": {
+            "name": "Get information about a single replacement library.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.wellsaidlabs.com/v1/tts/replacement-libraries/{library-id}"
+          },
+          "docs": "Get information about a single replacement library."
+        },
+        {
+          "info": {
+            "name": "Delete a replacement library.",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.wellsaidlabs.com/v1/tts/replacement-libraries/{library-id}"
+          },
+          "docs": "Delete a replacement library."
+        },
+        {
+          "info": {
+            "name": "Get list of replacements in a library.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.wellsaidlabs.com/v1/tts/replacement-libraries/{library-id}/replacements"
+          },
+          "docs": "Get list of replacements in a library."
+        },
+        {
+          "info": {
+            "name": "Create a new replacement in a library.",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.wellsaidlabs.com/v1/tts/replacement-libraries/{library-id}/replacements",
+            "body": {
+              "type": "json",
+              "data": "{\"original\": \"<string>\", \"replacement\": \"<string>\"}"
+            }
+          },
+          "docs": "Create a new replacement in a library."
+        },
+        {
+          "info": {
+            "name": "Get details of a replacement.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.wellsaidlabs.com/v1/tts/replacement-libraries/{library-id}/replacements/{replacement-id}"
+          },
+          "docs": "Get details of a replacement."
+        },
+        {
+          "info": {
+            "name": "Delete a replacement.",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.wellsaidlabs.com/v1/tts/replacement-libraries/{library-id}/replacements/{replacement-id}"
+          },
+          "docs": "Delete a replacement."
+        }
+      ]
+    }
+  ]
+}

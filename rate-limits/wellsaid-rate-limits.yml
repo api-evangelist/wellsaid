@@ -1,0 +1,59 @@
+specification: API Commons Rate Limits
+specificationVersion: '0.1'
+schema: https://raw.githubusercontent.com/api-evangelist/interface-research/main/schema/api-commons.yml#/$defs/RateLimits
+provider: WellSaid Labs
+providerId: wellsaid
+created: '2026-06-21'
+modified: '2026-06-21'
+reconciled: false
+tags:
+- AI
+- Text to Speech
+- Voice
+- Audio
+- TTS
+- Rate Limiting
+- Quotas
+- Throttling
+description: >-
+  The WellSaid Labs API enforces per-account rate limiting on text-to-speech
+  render endpoints, returning HTTP 429 when limits are exceeded. Each render
+  request is bounded to 1,000 characters of input text. Specific per-account
+  requests-per-minute / concurrency limits and any per-tier render quotas are
+  not publicly documented and vary by plan and Enterprise agreement; they are
+  not reconciled in this artifact.
+notes: >-
+  Confirm concurrency, requests-per-minute, and any daily render/character
+  quotas with WellSaid Labs during reconciliation. The 1,000-character
+  per-request input cap is documented in the API reference; subscription
+  clip-length caps (commonly cited at 5,000 characters) apply in Studio rather
+  than as an API per-request limit.
+sources:
+- https://docs.wellsaidlabs.com/reference/getting-started-with-your-api
+- https://docs.wellsaidlabs.com/reference/ttsstream
+responseCodes:
+  throttled: 429
+limits:
+- name: Requests Per Minute
+  scope: account
+  metric: requests
+  limit: see provider documentation
+  notes: Per-account request rate limiting; exact value not publicly documented.
+- name: Concurrent Renders
+  scope: account
+  metric: concurrent_requests
+  limit: see provider documentation
+  notes: Concurrency limit on simultaneous TTS renders; varies by plan.
+- name: Input Characters Per Request
+  scope: request
+  metric: characters
+  limit: 1000
+  notes: Each render request accepts 1-1000 characters of input text.
+policies:
+- name: Tiered Limits
+  description: Limits and render quotas vary by subscription tier and Enterprise agreement.
+- name: Backoff Strategy
+  description: Clients should implement exponential backoff with jitter on HTTP 429 responses.
+maintainers:
+- FN: Kin Lane
+  email: kin@apievangelist.com
