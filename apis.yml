@@ -87,6 +87,12 @@ apis:
     name, accent, and speaking style for selecting a voice, plus respelling suggestions
     and replacement libraries that shape pronunciation across renders.
 common:
+- type: TrustCenter
+  url: security/wellsaid-trust-center.yml
+- type: DomainSecurity
+  url: security/wellsaid-domain-security.yml
+- type: Authentication
+  url: authentication/wellsaid-authentication.yml
 - type: GitHubOrganization
   url: https://github.com/wellsaid-labs
 - type: LinkedIn
