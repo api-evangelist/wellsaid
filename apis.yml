@@ -87,6 +87,8 @@ apis:
     name, accent, and speaking style for selecting a voice, plus respelling suggestions
     and replacement libraries that shape pronunciation across renders.
 common:
+- type: AgenticAccess
+  url: agentic-access/wellsaid-agentic-access.yml
 - type: TrustCenter
   url: security/wellsaid-trust-center.yml
 - type: DomainSecurity
