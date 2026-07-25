@@ -1,0 +1,59 @@
+openapi: 3.0.1
+info:
+  title: WellSaid Labs Clips Voices API
+  description: REST API for WellSaid Labs AI text-to-speech. Render text to speech using studio-quality voice avatars via synchronous clip creation, low-latency audio streaming, and word-timing renders with subtitles. Authentication is performed with an X-Api-Key request header.
+  termsOfService: https://wellsaidlabs.com/terms/
+  contact:
+    name: WellSaid Labs Support
+    url: https://docs.wellsaidlabs.com
+  version: '1.0'
+servers:
+- url: https://api.wellsaidlabs.com/v1
+security:
+- ApiKeyAuth: []
+tags:
+- name: Voices
+  description: Discover available voice avatars.
+paths:
+  /tts/avatars:
+    get:
+      operationId: getAvatars
+      tags:
+      - Voices
+      summary: Get available voice avatars.
+      description: Returns the list of available voice avatars with their speaker_id, name, accent, and speaking style for selecting a voice to render with.
+      responses:
+        '200':
+          description: A list of available voice avatars.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Avatar'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+components:
+  schemas:
+    Avatar:
+      type: object
+      properties:
+        speaker_id:
+          type: integer
+        avatar_id:
+          type: integer
+        name:
+          type: string
+        accent:
+          type: string
+        style:
+          type: string
+          description: Speaking style of the voice avatar.
+  responses:
+    Unauthorized:
+      description: API key missing or invalid.
+  securitySchemes:
+    ApiKeyAuth:
+      type: apiKey
+      in: header
+      name: X-Api-Key

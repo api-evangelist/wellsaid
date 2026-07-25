@@ -1,0 +1,253 @@
+openapi: 3.0.1
+info:
+  title: WellSaid Labs Clips Pronunciation API
+  description: REST API for WellSaid Labs AI text-to-speech. Render text to speech using studio-quality voice avatars via synchronous clip creation, low-latency audio streaming, and word-timing renders with subtitles. Authentication is performed with an X-Api-Key request header.
+  termsOfService: https://wellsaidlabs.com/terms/
+  contact:
+    name: WellSaid Labs Support
+    url: https://docs.wellsaidlabs.com
+  version: '1.0'
+servers:
+- url: https://api.wellsaidlabs.com/v1
+security:
+- ApiKeyAuth: []
+tags:
+- name: Pronunciation
+  description: Respelling suggestions and replacement libraries.
+paths:
+  /tts/respelling-suggestions:
+    get:
+      operationId: getRespellingSuggestions
+      tags:
+      - Pronunciation
+      summary: Get respelling suggestions.
+      description: Returns suggested respellings that shape the pronunciation of a word for use in renders or replacement libraries.
+      parameters:
+      - name: word
+        in: query
+        required: false
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Respelling suggestions.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: string
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+  /tts/replacement-libraries:
+    get:
+      operationId: listReplacementLibraries
+      tags:
+      - Pronunciation
+      summary: Get list of available replacement libraries.
+      responses:
+        '200':
+          description: A list of replacement libraries.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ReplacementLibrary'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+    post:
+      operationId: createReplacementLibrary
+      tags:
+      - Pronunciation
+      summary: Create a new replacement library.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ReplacementLibrary'
+      responses:
+        '200':
+          description: The created replacement library.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ReplacementLibrary'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+  /tts/replacement-libraries/{library-id}:
+    get:
+      operationId: getReplacementLibrary
+      tags:
+      - Pronunciation
+      summary: Get information about a single replacement library.
+      parameters:
+      - name: library-id
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: A single replacement library.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ReplacementLibrary'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          description: Replacement library not found.
+    delete:
+      operationId: deleteReplacementLibrary
+      tags:
+      - Pronunciation
+      summary: Delete a replacement library.
+      parameters:
+      - name: library-id
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '204':
+          description: Replacement library deleted.
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          description: Replacement library not found.
+  /tts/replacement-libraries/{library-id}/replacements:
+    get:
+      operationId: listReplacements
+      tags:
+      - Pronunciation
+      summary: Get list of replacements in a library.
+      parameters:
+      - name: library-id
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: A list of replacements.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Replacement'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+    post:
+      operationId: createReplacement
+      tags:
+      - Pronunciation
+      summary: Create a new replacement in a library.
+      parameters:
+      - name: library-id
+        in: path
+        required: true
+        schema:
+          type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Replacement'
+      responses:
+        '200':
+          description: The created replacement.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Replacement'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+  /tts/replacement-libraries/{library-id}/replacements/{replacement-id}:
+    get:
+      operationId: getReplacement
+      tags:
+      - Pronunciation
+      summary: Get details of a replacement.
+      parameters:
+      - name: library-id
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: replacement-id
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: A single replacement.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Replacement'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          description: Replacement not found.
+    delete:
+      operationId: deleteReplacement
+      tags:
+      - Pronunciation
+      summary: Delete a replacement.
+      parameters:
+      - name: library-id
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: replacement-id
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '204':
+          description: Replacement deleted.
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          description: Replacement not found.
+components:
+  schemas:
+    ReplacementLibrary:
+      type: object
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+    Replacement:
+      type: object
+      properties:
+        id:
+          type: string
+        original:
+          type: string
+          description: The original word or phrase to replace.
+        replacement:
+          type: string
+          description: The respelling or replacement applied during rendering.
+  responses:
+    BadRequest:
+      description: Request failed input validation.
+    Unauthorized:
+      description: API key missing or invalid.
+  securitySchemes:
+    ApiKeyAuth:
+      type: apiKey
+      in: header
+      name: X-Api-Key

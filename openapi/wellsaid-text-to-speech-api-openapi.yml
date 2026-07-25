@@ -1,0 +1,182 @@
+openapi: 3.0.1
+info:
+  title: WellSaid Labs Clips Text-to-Speech API
+  description: REST API for WellSaid Labs AI text-to-speech. Render text to speech using studio-quality voice avatars via synchronous clip creation, low-latency audio streaming, and word-timing renders with subtitles. Authentication is performed with an X-Api-Key request header.
+  termsOfService: https://wellsaidlabs.com/terms/
+  contact:
+    name: WellSaid Labs Support
+    url: https://docs.wellsaidlabs.com
+  version: '1.0'
+servers:
+- url: https://api.wellsaidlabs.com/v1
+security:
+- ApiKeyAuth: []
+tags:
+- name: Text-to-Speech
+  description: Render text to speech as clips or audio streams.
+paths:
+  /tts/stream:
+    post:
+      operationId: streamTextToSpeech
+      tags:
+      - Text-to-Speech
+      summary: Render text to speech as an audio stream.
+      description: Renders the supplied text to speech with the chosen voice avatar and streams the result back as an audio/mpeg (MP3) stream as it is produced.
+      parameters:
+      - name: X-Enable-SSML
+        in: header
+        required: false
+        description: Enables limited SSML translation for the input text.
+        schema:
+          type: boolean
+      - name: Accept
+        in: header
+        required: false
+        description: Desired audio media type for the streamed response.
+        schema:
+          type: string
+          default: audio/mpeg
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/RenderRequest'
+      responses:
+        '200':
+          description: Audio stream from a successful text-to-speech render.
+          content:
+            audio/mpeg:
+              schema:
+                type: string
+                format: binary
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '429':
+          $ref: '#/components/responses/TooManyRequests'
+        '508':
+          description: Render loop detected. Likely a result of unusual phrasing, characters, and/or punctuation in the input text.
+  /tts/clips:
+    post:
+      operationId: createClip
+      tags:
+      - Text-to-Speech
+      summary: Create a new TTS clip asynchronously.
+      description: Submits a text-to-speech render request and creates a clip that is produced asynchronously. Poll the clip endpoint to retrieve status and the rendered audio.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/RenderRequest'
+      responses:
+        '200':
+          description: The created clip.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Clip'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '429':
+          $ref: '#/components/responses/TooManyRequests'
+  /tts/word-timing:
+    post:
+      operationId: renderWordTiming
+      tags:
+      - Text-to-Speech
+      summary: Render text to speech with timing information and subtitles.
+      description: Renders the supplied text to speech and returns a zip file containing the generated audio along with word-level timing as JSON, SRT, and VTT subtitle files.
+      parameters:
+      - name: X-Enable-SSML
+        in: header
+        required: false
+        description: Enables limited SSML translation for the input text.
+        schema:
+          type: boolean
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/RenderRequest'
+      responses:
+        '200':
+          description: Zip archive containing the rendered audio plus JSON, SRT, and VTT timing files.
+          content:
+            application/zip:
+              schema:
+                type: string
+                format: binary
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '429':
+          $ref: '#/components/responses/TooManyRequests'
+        '508':
+          description: Render loop detected.
+components:
+  schemas:
+    Clip:
+      type: object
+      properties:
+        id:
+          type: string
+        status:
+          type: string
+          description: Processing status of the asynchronous render.
+        speaker_id:
+          type: integer
+        text:
+          type: string
+        url:
+          type: string
+          description: URL of the rendered audio when available.
+    RenderRequest:
+      type: object
+      required:
+      - speaker_id
+      - text
+      properties:
+        speaker_id:
+          type: integer
+          description: Identifier of the voice avatar (speaker) to render with.
+          example: 50
+        text:
+          type: string
+          minLength: 1
+          maxLength: 1000
+          description: The input text to render to speech.
+          example: I love building and shipping new features for our users!
+        model:
+          type: string
+          enum:
+          - legacy
+          - caruso
+          description: The TTS model to render with.
+        library_ids:
+          type: array
+          description: Optional replacement library identifiers to apply during the render.
+          items:
+            type: string
+        audio_configs:
+          type: object
+          description: Optional audio configuration settings for the render.
+          additionalProperties: true
+  responses:
+    BadRequest:
+      description: Request failed input validation.
+    Unauthorized:
+      description: API key missing or invalid.
+    TooManyRequests:
+      description: Rate limit exceeded.
+  securitySchemes:
+    ApiKeyAuth:
+      type: apiKey
+      in: header
+      name: X-Api-Key

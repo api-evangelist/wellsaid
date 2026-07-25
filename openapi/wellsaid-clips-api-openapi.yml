@@ -1,0 +1,178 @@
+openapi: 3.0.1
+info:
+  title: WellSaid Labs Clips API
+  description: REST API for WellSaid Labs AI text-to-speech. Render text to speech using studio-quality voice avatars via synchronous clip creation, low-latency audio streaming, and word-timing renders with subtitles. Authentication is performed with an X-Api-Key request header.
+  termsOfService: https://wellsaidlabs.com/terms/
+  contact:
+    name: WellSaid Labs Support
+    url: https://docs.wellsaidlabs.com
+  version: '1.0'
+servers:
+- url: https://api.wellsaidlabs.com/v1
+security:
+- ApiKeyAuth: []
+tags:
+- name: Clips
+  description: Manage rendered clips.
+paths:
+  /tts/clips:
+    post:
+      operationId: createClip
+      tags:
+      - Clips
+      summary: Create a new TTS clip asynchronously.
+      description: Submits a text-to-speech render request and creates a clip that is produced asynchronously. Poll the clip endpoint to retrieve status and the rendered audio.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/RenderRequest'
+      responses:
+        '200':
+          description: The created clip.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Clip'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '429':
+          $ref: '#/components/responses/TooManyRequests'
+    get:
+      operationId: listClips
+      tags:
+      - Clips
+      summary: Get a list of recent clips.
+      responses:
+        '200':
+          description: A list of recent clips.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Clip'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+  /tts/clips/{clip-id}:
+    get:
+      operationId: getClip
+      tags:
+      - Clips
+      summary: Get information about a single clip.
+      parameters:
+      - name: clip-id
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Information about a single clip.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Clip'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          description: Clip not found.
+  /tts/clips/combine:
+    post:
+      operationId: combineClips
+      tags:
+      - Clips
+      summary: Combine a list of clips into a single file with pauses.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CombineClipsRequest'
+      responses:
+        '200':
+          description: Combined audio file.
+          content:
+            audio/mpeg:
+              schema:
+                type: string
+                format: binary
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+components:
+  schemas:
+    Clip:
+      type: object
+      properties:
+        id:
+          type: string
+        status:
+          type: string
+          description: Processing status of the asynchronous render.
+        speaker_id:
+          type: integer
+        text:
+          type: string
+        url:
+          type: string
+          description: URL of the rendered audio when available.
+    RenderRequest:
+      type: object
+      required:
+      - speaker_id
+      - text
+      properties:
+        speaker_id:
+          type: integer
+          description: Identifier of the voice avatar (speaker) to render with.
+          example: 50
+        text:
+          type: string
+          minLength: 1
+          maxLength: 1000
+          description: The input text to render to speech.
+          example: I love building and shipping new features for our users!
+        model:
+          type: string
+          enum:
+          - legacy
+          - caruso
+          description: The TTS model to render with.
+        library_ids:
+          type: array
+          description: Optional replacement library identifiers to apply during the render.
+          items:
+            type: string
+        audio_configs:
+          type: object
+          description: Optional audio configuration settings for the render.
+          additionalProperties: true
+    CombineClipsRequest:
+      type: object
+      required:
+      - clip_ids
+      properties:
+        clip_ids:
+          type: array
+          items:
+            type: string
+        pause:
+          type: number
+          description: Pause in seconds inserted between combined clips.
+  responses:
+    BadRequest:
+      description: Request failed input validation.
+    Unauthorized:
+      description: API key missing or invalid.
+    TooManyRequests:
+      description: Rate limit exceeded.
+  securitySchemes:
+    ApiKeyAuth:
+      type: apiKey
+      in: header
+      name: X-Api-Key
