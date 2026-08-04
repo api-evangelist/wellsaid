@@ -1,0 +1,20 @@
+{
+  "provider": "wellsaid",
+  "sources": [
+    "wellsaid-clips-api-openapi.yml",
+    "wellsaid-pronunciation-api-openapi.yml",
+    "wellsaid-text-to-speech-api-openapi.yml",
+    "wellsaid-voices-api-openapi.yml"
+  ],
+  "outputs": [
+    "wellsaid-clips-api-openapi.yml",
+    "wellsaid-pronunciation-api-openapi.yml",
+    "wellsaid-text-to-speech-api-openapi.yml",
+    "wellsaid-voices-api-openapi.yml"
+  ],
+  "archived": [],
+  "errors": [],
+  "warnings": [],
+  "notes": [],
+  "skipped": []
+}
