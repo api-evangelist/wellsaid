@@ -1,0 +1,982 @@
+{
+  "item": [
+    {
+      "id": "a6149e7c-7ccd-46ad-9eb1-2e7530eab5b0",
+      "name": "Text-to-Speech",
+      "description": {
+        "content": "Render text to speech as clips or audio streams.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "1a86ec0d-1691-4c77-b06a-68d7a314dd01",
+          "name": "Render text to speech as an audio stream.",
+          "request": {
+            "name": "Render text to speech as an audio stream.",
+            "description": {
+              "content": "Renders the supplied text to speech with the chosen voice avatar and streams the result back as an audio/mpeg (MP3) stream as it is produced.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "tts",
+                "stream"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "Enables limited SSML translation for the input text.",
+                "key": "X-Enable-SSML",
+                "value": "<boolean>"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "audio/mpeg"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"speaker_id\": \"<integer>\",\n  \"text\": \"<string>\",\n  \"model\": \"<string>\",\n  \"library_ids\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"audio_configs\": {\n    \"key_0\": 8202,\n    \"key_1\": true,\n    \"key_2\": 6469\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "04596c0a-ffbd-45e1-937f-0a1f8e073105",
+              "name": "Audio stream from a successful text-to-speech render.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "tts",
+                    "stream"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-Api-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Enables limited SSML translation for the input text.",
+                    "key": "X-Enable-SSML",
+                    "value": "<boolean>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Desired audio media type for the streamed response.",
+                    "key": "Accept",
+                    "value": "audio/mpeg"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "audio/mpeg"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"speaker_id\": 50,\n  \"text\": \"I love building and shipping new features for our users!\",\n  \"model\": \"<string>\",\n  \"library_ids\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"audio_configs\": {\n    \"key_0\": 1722.7699462855505,\n    \"key_1\": 4846,\n    \"key_2\": 6956.767980616203\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "audio/mpeg"
+                }
+              ],
+              "body": "string",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "347aac8d-a481-48c1-bd7f-c194e7722132",
+              "name": "Request failed input validation.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "tts",
+                    "stream"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-Api-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Enables limited SSML translation for the input text.",
+                    "key": "X-Enable-SSML",
+                    "value": "<boolean>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Desired audio media type for the streamed response.",
+                    "key": "Accept",
+                    "value": "audio/mpeg"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"speaker_id\": 50,\n  \"text\": \"I love building and shipping new features for our users!\",\n  \"model\": \"<string>\",\n  \"library_ids\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"audio_configs\": {\n    \"key_0\": 1722.7699462855505,\n    \"key_1\": 4846,\n    \"key_2\": 6956.767980616203\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "35ce51d5-8c04-47a6-bb58-11da3b38eb83",
+              "name": "API key missing or invalid.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "tts",
+                    "stream"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-Api-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Enables limited SSML translation for the input text.",
+                    "key": "X-Enable-SSML",
+                    "value": "<boolean>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Desired audio media type for the streamed response.",
+                    "key": "Accept",
+                    "value": "audio/mpeg"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"speaker_id\": 50,\n  \"text\": \"I love building and shipping new features for our users!\",\n  \"model\": \"<string>\",\n  \"library_ids\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"audio_configs\": {\n    \"key_0\": 1722.7699462855505,\n    \"key_1\": 4846,\n    \"key_2\": 6956.767980616203\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "34d09b06-c737-447e-a038-202df005fff8",
+              "name": "Rate limit exceeded.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "tts",
+                    "stream"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-Api-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Enables limited SSML translation for the input text.",
+                    "key": "X-Enable-SSML",
+                    "value": "<boolean>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Desired audio media type for the streamed response.",
+                    "key": "Accept",
+                    "value": "audio/mpeg"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"speaker_id\": 50,\n  \"text\": \"I love building and shipping new features for our users!\",\n  \"model\": \"<string>\",\n  \"library_ids\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"audio_configs\": {\n    \"key_0\": 1722.7699462855505,\n    \"key_1\": 4846,\n    \"key_2\": 6956.767980616203\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Too Many Requests",
+              "code": 429,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "69f1b1a1-a1fa-44b8-9602-de1ed4d49a0c",
+              "name": "Render loop detected. Likely a result of unusual phrasing, characters, and/or punctuation in the input text.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "tts",
+                    "stream"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-Api-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Enables limited SSML translation for the input text.",
+                    "key": "X-Enable-SSML",
+                    "value": "<boolean>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Desired audio media type for the streamed response.",
+                    "key": "Accept",
+                    "value": "audio/mpeg"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"speaker_id\": 50,\n  \"text\": \"I love building and shipping new features for our users!\",\n  \"model\": \"<string>\",\n  \"library_ids\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"audio_configs\": {\n    \"key_0\": 1722.7699462855505,\n    \"key_1\": 4846,\n    \"key_2\": 6956.767980616203\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Loop Detected (WebDAV) (RFC 5842)",
+              "code": 508,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "7a03bce3-3bda-48c5-a8a0-6fb499f73290",
+          "name": "Create a new TTS clip asynchronously.",
+          "request": {
+            "name": "Create a new TTS clip asynchronously.",
+            "description": {
+              "content": "Submits a text-to-speech render request and creates a clip that is produced asynchronously. Poll the clip endpoint to retrieve status and the rendered audio.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "tts",
+                "clips"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"speaker_id\": \"<integer>\",\n  \"text\": \"<string>\",\n  \"model\": \"<string>\",\n  \"library_ids\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"audio_configs\": {\n    \"key_0\": 9317.457957304277,\n    \"key_1\": true\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "366a2a95-253f-40b6-bcfe-2a0eadbcd428",
+              "name": "The created clip.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "tts",
+                    "clips"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-Api-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"speaker_id\": 50,\n  \"text\": \"I love building and shipping new features for our users!\",\n  \"model\": \"<string>\",\n  \"library_ids\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"audio_configs\": {\n    \"key_0\": 1722.7699462855505,\n    \"key_1\": 4846,\n    \"key_2\": 6956.767980616203\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"string\",\n  \"status\": \"string\",\n  \"speaker_id\": 5906,\n  \"text\": \"string\",\n  \"url\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "2e05feff-ee24-49c0-b8d8-430875233173",
+              "name": "Request failed input validation.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "tts",
+                    "clips"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-Api-Key",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"speaker_id\": 50,\n  \"text\": \"I love building and shipping new features for our users!\",\n  \"model\": \"<string>\",\n  \"library_ids\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"audio_configs\": {\n    \"key_0\": 1722.7699462855505,\n    \"key_1\": 4846,\n    \"key_2\": 6956.767980616203\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "bfe6a73e-b0a9-4ce3-a7f7-67e3d7640218",
+              "name": "API key missing or invalid.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "tts",
+                    "clips"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-Api-Key",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"speaker_id\": 50,\n  \"text\": \"I love building and shipping new features for our users!\",\n  \"model\": \"<string>\",\n  \"library_ids\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"audio_configs\": {\n    \"key_0\": 1722.7699462855505,\n    \"key_1\": 4846,\n    \"key_2\": 6956.767980616203\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "4d0b520b-7e34-4e19-9188-a83e03f33cf5",
+              "name": "Rate limit exceeded.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "tts",
+                    "clips"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-Api-Key",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"speaker_id\": 50,\n  \"text\": \"I love building and shipping new features for our users!\",\n  \"model\": \"<string>\",\n  \"library_ids\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"audio_configs\": {\n    \"key_0\": 1722.7699462855505,\n    \"key_1\": 4846,\n    \"key_2\": 6956.767980616203\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Too Many Requests",
+              "code": 429,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "90b03976-3be0-44cd-a932-ebc01a90ea50",
+          "name": "Render text to speech with timing information and subtitles.",
+          "request": {
+            "name": "Render text to speech with timing information and subtitles.",
+            "description": {
+              "content": "Renders the supplied text to speech and returns a zip file containing the generated audio along with word-level timing as JSON, SRT, and VTT subtitle files.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "tts",
+                "word-timing"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "Enables limited SSML translation for the input text.",
+                "key": "X-Enable-SSML",
+                "value": "<boolean>"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/zip"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"speaker_id\": \"<integer>\",\n  \"text\": \"<string>\",\n  \"model\": \"<string>\",\n  \"library_ids\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"audio_configs\": {\n    \"key_0\": 9317.457957304277,\n    \"key_1\": true\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "2780ffc8-49ce-47bd-b94e-a3d8e126c449",
+              "name": "Zip archive containing the rendered audio plus JSON, SRT, and VTT timing files.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "tts",
+                    "word-timing"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-Api-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Enables limited SSML translation for the input text.",
+                    "key": "X-Enable-SSML",
+                    "value": "<boolean>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/zip"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"speaker_id\": 50,\n  \"text\": \"I love building and shipping new features for our users!\",\n  \"model\": \"<string>\",\n  \"library_ids\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"audio_configs\": {\n    \"key_0\": 1722.7699462855505,\n    \"key_1\": 4846,\n    \"key_2\": 6956.767980616203\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/zip"
+                }
+              ],
+              "body": "string",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "37863c9a-2a30-43de-8820-7b046906009c",
+              "name": "Request failed input validation.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "tts",
+                    "word-timing"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-Api-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Enables limited SSML translation for the input text.",
+                    "key": "X-Enable-SSML",
+                    "value": "<boolean>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"speaker_id\": 50,\n  \"text\": \"I love building and shipping new features for our users!\",\n  \"model\": \"<string>\",\n  \"library_ids\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"audio_configs\": {\n    \"key_0\": 1722.7699462855505,\n    \"key_1\": 4846,\n    \"key_2\": 6956.767980616203\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "95925b25-17c8-404e-aef0-7581dc73a29a",
+              "name": "API key missing or invalid.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "tts",
+                    "word-timing"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-Api-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Enables limited SSML translation for the input text.",
+                    "key": "X-Enable-SSML",
+                    "value": "<boolean>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"speaker_id\": 50,\n  \"text\": \"I love building and shipping new features for our users!\",\n  \"model\": \"<string>\",\n  \"library_ids\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"audio_configs\": {\n    \"key_0\": 1722.7699462855505,\n    \"key_1\": 4846,\n    \"key_2\": 6956.767980616203\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "a78f9cf9-e3bb-44ff-9da8-0a5b612587d1",
+              "name": "Rate limit exceeded.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "tts",
+                    "word-timing"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-Api-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Enables limited SSML translation for the input text.",
+                    "key": "X-Enable-SSML",
+                    "value": "<boolean>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"speaker_id\": 50,\n  \"text\": \"I love building and shipping new features for our users!\",\n  \"model\": \"<string>\",\n  \"library_ids\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"audio_configs\": {\n    \"key_0\": 1722.7699462855505,\n    \"key_1\": 4846,\n    \"key_2\": 6956.767980616203\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Too Many Requests",
+              "code": 429,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "911ac8d6-529f-4dd2-a370-b331e40e8602",
+              "name": "Render loop detected.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "tts",
+                    "word-timing"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-Api-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Enables limited SSML translation for the input text.",
+                    "key": "X-Enable-SSML",
+                    "value": "<boolean>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"speaker_id\": 50,\n  \"text\": \"I love building and shipping new features for our users!\",\n  \"model\": \"<string>\",\n  \"library_ids\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"audio_configs\": {\n    \"key_0\": 1722.7699462855505,\n    \"key_1\": 4846,\n    \"key_2\": 6956.767980616203\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Loop Detected (WebDAV) (RFC 5842)",
+              "code": 508,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.wellsaidlabs.com/v1",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "X-Api-Key"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "header"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "22204928-65c4-43c5-8d84-67e6e0a6c7e3",
+    "name": "WellSaid Labs Clips Text-to-Speech API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "REST API for WellSaid Labs AI text-to-speech. Render text to speech using studio-quality voice avatars via synchronous clip creation, low-latency audio streaming, and word-timing renders with subtitles. Authentication is performed with an X-Api-Key request header.\n\nContact Support:\n Name: WellSaid Labs Support",
+      "type": "text/plain"
+    }
+  }
+}

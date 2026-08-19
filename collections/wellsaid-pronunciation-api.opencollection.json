@@ -1,0 +1,192 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "WellSaid Labs Clips Pronunciation API",
+    "version": "1.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "X-Api-Key",
+      "value": "{{X-Api-Key}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Pronunciation",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get respelling suggestions.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.wellsaidlabs.com/v1/tts/respelling-suggestions",
+            "params": [
+              {
+                "name": "word",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Returns suggested respellings that shape the pronunciation of a word for use in renders or replacement libraries."
+        },
+        {
+          "info": {
+            "name": "Get list of available replacement libraries.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.wellsaidlabs.com/v1/tts/replacement-libraries"
+          },
+          "docs": "Get list of available replacement libraries."
+        },
+        {
+          "info": {
+            "name": "Create a new replacement library.",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.wellsaidlabs.com/v1/tts/replacement-libraries",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create a new replacement library."
+        },
+        {
+          "info": {
+            "name": "Get information about a single replacement library.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.wellsaidlabs.com/v1/tts/replacement-libraries/:library-id",
+            "params": [
+              {
+                "name": "library-id",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Get information about a single replacement library."
+        },
+        {
+          "info": {
+            "name": "Delete a replacement library.",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.wellsaidlabs.com/v1/tts/replacement-libraries/:library-id",
+            "params": [
+              {
+                "name": "library-id",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Delete a replacement library."
+        },
+        {
+          "info": {
+            "name": "Get list of replacements in a library.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.wellsaidlabs.com/v1/tts/replacement-libraries/:library-id/replacements",
+            "params": [
+              {
+                "name": "library-id",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Get list of replacements in a library."
+        },
+        {
+          "info": {
+            "name": "Create a new replacement in a library.",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.wellsaidlabs.com/v1/tts/replacement-libraries/:library-id/replacements",
+            "params": [
+              {
+                "name": "library-id",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create a new replacement in a library."
+        },
+        {
+          "info": {
+            "name": "Get details of a replacement.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.wellsaidlabs.com/v1/tts/replacement-libraries/:library-id/replacements/:replacement-id",
+            "params": [
+              {
+                "name": "library-id",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "replacement-id",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Get details of a replacement."
+        },
+        {
+          "info": {
+            "name": "Delete a replacement.",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.wellsaidlabs.com/v1/tts/replacement-libraries/:library-id/replacements/:replacement-id",
+            "params": [
+              {
+                "name": "library-id",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "replacement-id",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Delete a replacement."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

@@ -1,0 +1,85 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "WellSaid Labs Clips API",
+    "version": "1.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "X-Api-Key",
+      "value": "{{X-Api-Key}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Clips",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get a list of recent clips.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.wellsaidlabs.com/v1/tts/clips"
+          },
+          "docs": "Get a list of recent clips."
+        },
+        {
+          "info": {
+            "name": "Create a new TTS clip asynchronously.",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.wellsaidlabs.com/v1/tts/clips",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Submits a text-to-speech render request and creates a clip that is produced asynchronously. Poll the clip endpoint to retrieve status and the rendered audio."
+        },
+        {
+          "info": {
+            "name": "Get information about a single clip.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.wellsaidlabs.com/v1/tts/clips/:clip-id",
+            "params": [
+              {
+                "name": "clip-id",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Get information about a single clip."
+        },
+        {
+          "info": {
+            "name": "Combine a list of clips into a single file with pauses.",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.wellsaidlabs.com/v1/tts/clips/combine",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Combine a list of clips into a single file with pauses."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

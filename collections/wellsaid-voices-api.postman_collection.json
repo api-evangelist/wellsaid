@@ -1,0 +1,169 @@
+{
+  "item": [
+    {
+      "id": "bbaf2fc3-ef42-44ca-bbcc-46c74839f7a4",
+      "name": "Voices",
+      "description": {
+        "content": "Discover available voice avatars.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "e815f3e9-91e0-465d-9506-996a40ac2b78",
+          "name": "Get available voice avatars.",
+          "request": {
+            "name": "Get available voice avatars.",
+            "description": {
+              "content": "Returns the list of available voice avatars with their speaker_id, name, accent, and speaking style for selecting a voice to render with.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "tts",
+                "avatars"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "643e77d0-1c02-477b-b342-0a39cfd5ec1c",
+              "name": "A list of available voice avatars.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "tts",
+                    "avatars"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-Api-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"speaker_id\": 8428,\n    \"avatar_id\": 7294,\n    \"name\": \"string\",\n    \"accent\": \"string\",\n    \"style\": \"string\"\n  },\n  {\n    \"speaker_id\": 2708,\n    \"avatar_id\": 8583,\n    \"name\": \"string\",\n    \"accent\": \"string\",\n    \"style\": \"string\"\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "e5114a3e-3428-4f1f-8131-4aceea8db936",
+              "name": "API key missing or invalid.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "tts",
+                    "avatars"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-Api-Key",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.wellsaidlabs.com/v1",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "X-Api-Key"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "header"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "5996c711-5624-428c-a7c7-a29718b0ae3e",
+    "name": "WellSaid Labs Clips Voices API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "REST API for WellSaid Labs AI text-to-speech. Render text to speech using studio-quality voice avatars via synchronous clip creation, low-latency audio streaming, and word-timing renders with subtitles. Authentication is performed with an X-Api-Key request header.\n\nContact Support:\n Name: WellSaid Labs Support",
+      "type": "text/plain"
+    }
+  }
+}
