@@ -2,10 +2,9 @@ aid: wellsaid
 url: https://raw.githubusercontent.com/api-evangelist/wellsaid/refs/heads/main/apis.yml
 name: WellSaid Labs
 kind: company
-description: WellSaid Labs is an AI text-to-speech voice platform. Its REST API renders
-  natural-sounding speech from text using studio-quality voice avatars, supporting
-  synchronous clip creation, low-latency audio streaming, and word-level timing with
-  subtitles, authenticated with an X-Api-Key header.
+description: WellSaid Labs is an AI text-to-speech voice platform. Its REST API renders natural-sounding speech
+  from text using studio-quality voice avatars, supporting synchronous clip creation, low-latency audio streaming,
+  and word-level timing with subtitles, authenticated with an X-Api-Key header.
 deliveryModel:
   model: saas
   open_source: false
@@ -20,16 +19,17 @@ deliveryModel:
   method: derived
 accessModel:
   pricing: paid
-  onboarding: self-serve
+  onboarding: unknown
   trial: false
   try_now: false
   public: false
-  label: Paid · Self-serve signup
-  confidence: high
+  label: Paid
+  confidence: medium
   source:
   - plans
   - authentication
-  generated: '2026-07-22'
+  - security
+  generated: '2026-09-03'
   method: derived
 image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/icons/wellsaid.png
 tags:
@@ -159,6 +159,8 @@ common:
   url: rate-limits/wellsaid-rate-limits.yml
 - type: FinOps
   url: finops/wellsaid-finops.yml
+- type: Documentation
+  url: https://docs.wellsaidlabs.com/docs/getting-started
 maintainers:
 - FN: Kin Lane
   email: kin@apievangelist.com
