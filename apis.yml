@@ -2,9 +2,7 @@ aid: wellsaid
 url: https://raw.githubusercontent.com/api-evangelist/wellsaid/refs/heads/main/apis.yml
 name: WellSaid Labs
 kind: company
-description: WellSaid Labs is an AI text-to-speech voice platform. Its REST API renders natural-sounding speech
-  from text using studio-quality voice avatars, supporting synchronous clip creation, low-latency audio streaming,
-  and word-level timing with subtitles, authenticated with an X-Api-Key header.
+description: WellSaid Labs is an AI text-to-speech voice platform. Its REST API renders natural-sounding speech from text using studio-quality voice avatars, supporting synchronous clip creation, low-latency audio streaming, and word-level timing with subtitles, authenticated with an X-Api-Key header.
 deliveryModel:
   model: saas
   open_source: false
@@ -134,6 +132,22 @@ apis:
     url: collections/wellsaid.opencollection.json
   - type: Documentation
     url: https://docs.wellsaidlabs.com/reference/ttsstream
+  - type: Documentation
+    url: https://docs.wellsaidlabs.com/reference/available-voice-avatars
+- aid: wellsaid:wellsaid-labs-voice-avatars-api
+  name: WellSaid Labs Voice Avatars API
+  description: Catalog of available AI voice avatars and their metadata.
+  humanURL: https://docs.wellsaidlabs.com/reference/getting-started-with-your-api
+  baseURL: https://api.wellsaidlabs.com/v1
+  tags:
+  - Voice Avatars
+  properties:
+  - type: OpenAPI
+    url: openapi/wellsaid-labs-voice-avatars-api-openapi.yml
+  - type: Documentation
+    url: https://docs.wellsaidlabs.com/docs/getting-started
+  - type: APIReference
+    url: https://docs.wellsaidlabs.com/reference/getting-started-with-your-api
   - type: Documentation
     url: https://docs.wellsaidlabs.com/reference/available-voice-avatars
 common:
