@@ -134,7 +134,7 @@ apis:
     url: https://docs.wellsaidlabs.com/reference/ttsstream
   - type: Documentation
     url: https://docs.wellsaidlabs.com/reference/available-voice-avatars
-- aid: wellsaid:wellsaid-labs-voice-avatars-api
+- aid: wellsaid:wellsaid-voice-avatars-api
   name: WellSaid Labs Voice Avatars API
   description: Catalog of available AI voice avatars and their metadata.
   humanURL: https://docs.wellsaidlabs.com/reference/getting-started-with-your-api
@@ -143,7 +143,7 @@ apis:
   - Voice Avatars
   properties:
   - type: OpenAPI
-    url: openapi/wellsaid-labs-voice-avatars-api-openapi.yml
+    url: openapi/wellsaid-voice-avatars-api-openapi.yml
   - type: Documentation
     url: https://docs.wellsaidlabs.com/docs/getting-started
   - type: APIReference
