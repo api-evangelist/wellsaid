@@ -118,6 +118,8 @@ apis:
   humanURL: https://docs.wellsaidlabs.com/reference/getting-started-with-your-api
   baseURL: https://api.wellsaidlabs.com/v1
   tags:
+  - Voice
+  tags_raw:
   - Voices
   properties:
   - type: OpenAPI
