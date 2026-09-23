@@ -1,4 +1,4 @@
-openapi: 3.0.1
+openapi: 3.2.0
 info:
   title: WellSaid Labs Clips API
   description: REST API for WellSaid Labs AI text-to-speech. Render text to speech using studio-quality voice avatars via synchronous clip creation, low-latency audio streaming, and word-timing renders with subtitles. Authentication is performed with an X-Api-Key request header.
@@ -20,7 +20,7 @@ paths:
       operationId: createClip
       tags:
       - Clips
-      summary: Create a new TTS clip asynchronously.
+      summary: Create a new TTS clip asynchronously
       description: Submits a text-to-speech render request and creates a clip that is produced asynchronously. Poll the clip endpoint to retrieve status and the rendered audio.
       requestBody:
         required: true
@@ -45,7 +45,7 @@ paths:
       operationId: listClips
       tags:
       - Clips
-      summary: Get a list of recent clips.
+      summary: Get a list of recent clips
       responses:
         '200':
           description: A list of recent clips.
@@ -62,7 +62,7 @@ paths:
       operationId: getClip
       tags:
       - Clips
-      summary: Get information about a single clip.
+      summary: Get information about a single clip
       parameters:
       - name: clip-id
         in: path
@@ -85,7 +85,7 @@ paths:
       operationId: combineClips
       tags:
       - Clips
-      summary: Combine a list of clips into a single file with pauses.
+      summary: Combine a list of clips into a single file with pauses
       requestBody:
         required: true
         content:
@@ -165,12 +165,12 @@ components:
           type: number
           description: Pause in seconds inserted between combined clips.
   responses:
-    BadRequest:
-      description: Request failed input validation.
-    Unauthorized:
-      description: API key missing or invalid.
     TooManyRequests:
       description: Rate limit exceeded.
+    Unauthorized:
+      description: API key missing or invalid.
+    BadRequest:
+      description: Request failed input validation.
   securitySchemes:
     ApiKeyAuth:
       type: apiKey

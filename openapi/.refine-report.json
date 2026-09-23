@@ -1,20 +1,30 @@
 {
   "provider": "wellsaid",
   "sources": [
-    "wellsaid-clips-api-openapi.yml",
-    "wellsaid-pronunciation-api-openapi.yml",
-    "wellsaid-text-to-speech-api-openapi.yml",
-    "wellsaid-voices-api-openapi.yml"
+    "_original/wellsaid-openapi.yml",
+    "wellsaid-voice-avatars-api-openapi.yml"
   ],
   "outputs": [
     "wellsaid-clips-api-openapi.yml",
     "wellsaid-pronunciation-api-openapi.yml",
     "wellsaid-text-to-speech-api-openapi.yml",
-    "wellsaid-voices-api-openapi.yml"
+    "wellsaid-voices-api-openapi.yml",
+    "wellsaid-voice-avatars-api-openapi.yml"
   ],
   "archived": [],
   "errors": [],
-  "warnings": [],
-  "notes": [],
-  "skipped": []
+  "warnings": [
+    "wellsaid-voice-avatars-api-openapi.yml: previously refined output kept for 1 operation(s) no archived document covers (e.g. /avatars get); its other 0 operation(s) came from the archive and were dropped from it. The archive is incomplete for this provider \u2014 re-harvest to restore _original/ as the full source of truth."
+  ],
+  "notes": [
+    "sourced from openapi/_original/ (1 archived document(s)); previously refined output at the top level was skipped rather than re-split",
+    "wellsaid-openapi.yml: upgraded openapi 3.0.1 -> OpenAPI 3.2.0",
+    "apis.yml register: already-registered"
+  ],
+  "skipped": [
+    "wellsaid-clips-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "wellsaid-pronunciation-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "wellsaid-text-to-speech-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "wellsaid-voices-api-openapi.yml: previously refined output, superseded by openapi/_original/"
+  ]
 }

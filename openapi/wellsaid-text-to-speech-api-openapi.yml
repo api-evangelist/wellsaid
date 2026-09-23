@@ -1,6 +1,6 @@
-openapi: 3.0.1
+openapi: 3.2.0
 info:
-  title: WellSaid Labs Clips Text-to-Speech API
+  title: WellSaid Labs Text To Speech API
   description: REST API for WellSaid Labs AI text-to-speech. Render text to speech using studio-quality voice avatars via synchronous clip creation, low-latency audio streaming, and word-timing renders with subtitles. Authentication is performed with an X-Api-Key request header.
   termsOfService: https://wellsaidlabs.com/terms/
   contact:
@@ -12,15 +12,15 @@ servers:
 security:
 - ApiKeyAuth: []
 tags:
-- name: Text-to-Speech
+- name: Text To Speech
   description: Render text to speech as clips or audio streams.
 paths:
   /tts/stream:
     post:
       operationId: streamTextToSpeech
       tags:
-      - Text-to-Speech
-      summary: Render text to speech as an audio stream.
+      - Text To Speech
+      summary: Render text to speech as an audio stream
       description: Renders the supplied text to speech with the chosen voice avatar and streams the result back as an audio/mpeg (MP3) stream as it is produced.
       parameters:
       - name: X-Enable-SSML
@@ -62,8 +62,8 @@ paths:
     post:
       operationId: createClip
       tags:
-      - Text-to-Speech
-      summary: Create a new TTS clip asynchronously.
+      - Text To Speech
+      summary: Create a new TTS clip asynchronously
       description: Submits a text-to-speech render request and creates a clip that is produced asynchronously. Poll the clip endpoint to retrieve status and the rendered audio.
       requestBody:
         required: true
@@ -88,8 +88,8 @@ paths:
     post:
       operationId: renderWordTiming
       tags:
-      - Text-to-Speech
-      summary: Render text to speech with timing information and subtitles.
+      - Text To Speech
+      summary: Render text to speech with timing information and subtitles
       description: Renders the supplied text to speech and returns a zip file containing the generated audio along with word-level timing as JSON, SRT, and VTT subtitle files.
       parameters:
       - name: X-Enable-SSML
@@ -169,12 +169,12 @@ components:
           description: Optional audio configuration settings for the render.
           additionalProperties: true
   responses:
-    BadRequest:
-      description: Request failed input validation.
-    Unauthorized:
-      description: API key missing or invalid.
     TooManyRequests:
       description: Rate limit exceeded.
+    Unauthorized:
+      description: API key missing or invalid.
+    BadRequest:
+      description: Request failed input validation.
   securitySchemes:
     ApiKeyAuth:
       type: apiKey

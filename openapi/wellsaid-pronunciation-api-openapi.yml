@@ -1,6 +1,6 @@
-openapi: 3.0.1
+openapi: 3.2.0
 info:
-  title: WellSaid Labs Clips Pronunciation API
+  title: WellSaid Labs Pronunciation API
   description: REST API for WellSaid Labs AI text-to-speech. Render text to speech using studio-quality voice avatars via synchronous clip creation, low-latency audio streaming, and word-timing renders with subtitles. Authentication is performed with an X-Api-Key request header.
   termsOfService: https://wellsaidlabs.com/terms/
   contact:
@@ -20,7 +20,7 @@ paths:
       operationId: getRespellingSuggestions
       tags:
       - Pronunciation
-      summary: Get respelling suggestions.
+      summary: Get respelling suggestions
       description: Returns suggested respellings that shape the pronunciation of a word for use in renders or replacement libraries.
       parameters:
       - name: word
@@ -44,7 +44,7 @@ paths:
       operationId: listReplacementLibraries
       tags:
       - Pronunciation
-      summary: Get list of available replacement libraries.
+      summary: Get list of available replacement libraries
       responses:
         '200':
           description: A list of replacement libraries.
@@ -60,7 +60,7 @@ paths:
       operationId: createReplacementLibrary
       tags:
       - Pronunciation
-      summary: Create a new replacement library.
+      summary: Create a new replacement library
       requestBody:
         required: true
         content:
@@ -83,7 +83,7 @@ paths:
       operationId: getReplacementLibrary
       tags:
       - Pronunciation
-      summary: Get information about a single replacement library.
+      summary: Get information about a single replacement library
       parameters:
       - name: library-id
         in: path
@@ -105,7 +105,7 @@ paths:
       operationId: deleteReplacementLibrary
       tags:
       - Pronunciation
-      summary: Delete a replacement library.
+      summary: Delete a replacement library
       parameters:
       - name: library-id
         in: path
@@ -124,7 +124,7 @@ paths:
       operationId: listReplacements
       tags:
       - Pronunciation
-      summary: Get list of replacements in a library.
+      summary: Get list of replacements in a library
       parameters:
       - name: library-id
         in: path
@@ -146,7 +146,7 @@ paths:
       operationId: createReplacement
       tags:
       - Pronunciation
-      summary: Create a new replacement in a library.
+      summary: Create a new replacement in a library
       parameters:
       - name: library-id
         in: path
@@ -175,7 +175,7 @@ paths:
       operationId: getReplacement
       tags:
       - Pronunciation
-      summary: Get details of a replacement.
+      summary: Get details of a replacement
       parameters:
       - name: library-id
         in: path
@@ -202,7 +202,7 @@ paths:
       operationId: deleteReplacement
       tags:
       - Pronunciation
-      summary: Delete a replacement.
+      summary: Delete a replacement
       parameters:
       - name: library-id
         in: path
@@ -222,14 +222,12 @@ paths:
         '404':
           description: Replacement not found.
 components:
+  responses:
+    Unauthorized:
+      description: API key missing or invalid.
+    BadRequest:
+      description: Request failed input validation.
   schemas:
-    ReplacementLibrary:
-      type: object
-      properties:
-        id:
-          type: string
-        name:
-          type: string
     Replacement:
       type: object
       properties:
@@ -241,11 +239,13 @@ components:
         replacement:
           type: string
           description: The respelling or replacement applied during rendering.
-  responses:
-    BadRequest:
-      description: Request failed input validation.
-    Unauthorized:
-      description: API key missing or invalid.
+    ReplacementLibrary:
+      type: object
+      properties:
+        id:
+          type: string
+        name:
+          type: string
   securitySchemes:
     ApiKeyAuth:
       type: apiKey
