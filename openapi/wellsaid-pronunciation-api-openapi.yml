@@ -222,12 +222,14 @@ paths:
         '404':
           description: Replacement not found.
 components:
-  responses:
-    Unauthorized:
-      description: API key missing or invalid.
-    BadRequest:
-      description: Request failed input validation.
   schemas:
+    ReplacementLibrary:
+      type: object
+      properties:
+        id:
+          type: string
+        name:
+          type: string
     Replacement:
       type: object
       properties:
@@ -239,13 +241,11 @@ components:
         replacement:
           type: string
           description: The respelling or replacement applied during rendering.
-    ReplacementLibrary:
-      type: object
-      properties:
-        id:
-          type: string
-        name:
-          type: string
+  responses:
+    Unauthorized:
+      description: API key missing or invalid.
+    BadRequest:
+      description: Request failed input validation.
   securitySchemes:
     ApiKeyAuth:
       type: apiKey

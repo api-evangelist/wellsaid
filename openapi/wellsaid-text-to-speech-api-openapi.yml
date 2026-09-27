@@ -121,22 +121,14 @@ paths:
         '508':
           description: Render loop detected.
 components:
+  responses:
+    Unauthorized:
+      description: API key missing or invalid.
+    BadRequest:
+      description: Request failed input validation.
+    TooManyRequests:
+      description: Rate limit exceeded.
   schemas:
-    Clip:
-      type: object
-      properties:
-        id:
-          type: string
-        status:
-          type: string
-          description: Processing status of the asynchronous render.
-        speaker_id:
-          type: integer
-        text:
-          type: string
-        url:
-          type: string
-          description: URL of the rendered audio when available.
     RenderRequest:
       type: object
       required:
@@ -168,13 +160,21 @@ components:
           type: object
           description: Optional audio configuration settings for the render.
           additionalProperties: true
-  responses:
-    TooManyRequests:
-      description: Rate limit exceeded.
-    Unauthorized:
-      description: API key missing or invalid.
-    BadRequest:
-      description: Request failed input validation.
+    Clip:
+      type: object
+      properties:
+        id:
+          type: string
+        status:
+          type: string
+          description: Processing status of the asynchronous render.
+        speaker_id:
+          type: integer
+        text:
+          type: string
+        url:
+          type: string
+          description: URL of the rendered audio when available.
   securitySchemes:
     ApiKeyAuth:
       type: apiKey
