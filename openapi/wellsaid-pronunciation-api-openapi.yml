@@ -242,10 +242,10 @@ components:
           type: string
           description: The respelling or replacement applied during rendering.
   responses:
-    Unauthorized:
-      description: API key missing or invalid.
     BadRequest:
       description: Request failed input validation.
+    Unauthorized:
+      description: API key missing or invalid.
   securitySchemes:
     ApiKeyAuth:
       type: apiKey

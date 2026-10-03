@@ -106,6 +106,21 @@ paths:
           $ref: '#/components/responses/Unauthorized'
 components:
   schemas:
+    Clip:
+      type: object
+      properties:
+        id:
+          type: string
+        status:
+          type: string
+          description: Processing status of the asynchronous render.
+        speaker_id:
+          type: integer
+        text:
+          type: string
+        url:
+          type: string
+          description: URL of the rendered audio when available.
     CombineClipsRequest:
       type: object
       required:
@@ -149,28 +164,13 @@ components:
           type: object
           description: Optional audio configuration settings for the render.
           additionalProperties: true
-    Clip:
-      type: object
-      properties:
-        id:
-          type: string
-        status:
-          type: string
-          description: Processing status of the asynchronous render.
-        speaker_id:
-          type: integer
-        text:
-          type: string
-        url:
-          type: string
-          description: URL of the rendered audio when available.
   responses:
-    Unauthorized:
-      description: API key missing or invalid.
-    BadRequest:
-      description: Request failed input validation.
     TooManyRequests:
       description: Rate limit exceeded.
+    BadRequest:
+      description: Request failed input validation.
+    Unauthorized:
+      description: API key missing or invalid.
   securitySchemes:
     ApiKeyAuth:
       type: apiKey

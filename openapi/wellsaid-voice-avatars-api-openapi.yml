@@ -37,14 +37,14 @@ paths:
         '401':
           $ref: '#/components/responses/Unauthorized'
 components:
-  responses:
-    Unauthorized:
-      description: Missing or invalid X-Api-Key.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
   schemas:
+    Error:
+      type: object
+      properties:
+        message:
+          type: string
+        code:
+          type: string
     Avatar:
       type: object
       properties:
@@ -72,13 +72,13 @@ components:
           items:
             type: string
           description: Compatible models such as "caruso" and "legacy".
-    Error:
-      type: object
-      properties:
-        message:
-          type: string
-        code:
-          type: string
+  responses:
+    Unauthorized:
+      description: Missing or invalid X-Api-Key.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
   securitySchemes:
     apiKeyAuth:
       type: apiKey
