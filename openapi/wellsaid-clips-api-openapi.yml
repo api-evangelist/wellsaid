@@ -106,33 +106,6 @@ paths:
           $ref: '#/components/responses/Unauthorized'
 components:
   schemas:
-    Clip:
-      type: object
-      properties:
-        id:
-          type: string
-        status:
-          type: string
-          description: Processing status of the asynchronous render.
-        speaker_id:
-          type: integer
-        text:
-          type: string
-        url:
-          type: string
-          description: URL of the rendered audio when available.
-    CombineClipsRequest:
-      type: object
-      required:
-      - clip_ids
-      properties:
-        clip_ids:
-          type: array
-          items:
-            type: string
-        pause:
-          type: number
-          description: Pause in seconds inserted between combined clips.
     RenderRequest:
       type: object
       required:
@@ -164,13 +137,40 @@ components:
           type: object
           description: Optional audio configuration settings for the render.
           additionalProperties: true
+    CombineClipsRequest:
+      type: object
+      required:
+      - clip_ids
+      properties:
+        clip_ids:
+          type: array
+          items:
+            type: string
+        pause:
+          type: number
+          description: Pause in seconds inserted between combined clips.
+    Clip:
+      type: object
+      properties:
+        id:
+          type: string
+        status:
+          type: string
+          description: Processing status of the asynchronous render.
+        speaker_id:
+          type: integer
+        text:
+          type: string
+        url:
+          type: string
+          description: URL of the rendered audio when available.
   responses:
-    TooManyRequests:
-      description: Rate limit exceeded.
-    BadRequest:
-      description: Request failed input validation.
     Unauthorized:
       description: API key missing or invalid.
+    BadRequest:
+      description: Request failed input validation.
+    TooManyRequests:
+      description: Rate limit exceeded.
   securitySchemes:
     ApiKeyAuth:
       type: apiKey
