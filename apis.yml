@@ -43,7 +43,7 @@ tags_raw:
 - Audio
 - TTS
 created: '2026-06-21'
-modified: '2026-06-21'
+modified: '2026-10-06'
 specificationVersion: '0.23'
 apis:
 - aid: wellsaid:wellsaid-clips-api
@@ -153,6 +153,8 @@ apis:
   - type: Documentation
     url: https://docs.wellsaidlabs.com/reference/available-voice-avatars
 common:
+- url: https://www.wellsaid.io/resources/blog
+  type: Blog
 - type: AgenticAccess
   url: agentic-access/wellsaid-agentic-access.yml
 - type: TrustCenter
