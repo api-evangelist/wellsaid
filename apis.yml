@@ -153,6 +153,8 @@ apis:
   - type: Documentation
     url: https://docs.wellsaidlabs.com/reference/available-voice-avatars
 common:
+- type: Pricing
+  url: https://www.wellsaid.io/ai-voice-pricing
 - url: https://www.wellsaid.io/resources/blog
   type: Blog
 - type: AgenticAccess
