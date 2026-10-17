@@ -169,12 +169,12 @@ components:
           type: string
           description: URL of the rendered audio when available.
   responses:
-    BadRequest:
-      description: Request failed input validation.
-    TooManyRequests:
-      description: Rate limit exceeded.
     Unauthorized:
       description: API key missing or invalid.
+    TooManyRequests:
+      description: Rate limit exceeded.
+    BadRequest:
+      description: Request failed input validation.
   securitySchemes:
     ApiKeyAuth:
       type: apiKey

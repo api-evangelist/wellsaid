@@ -137,18 +137,6 @@ components:
           type: object
           description: Optional audio configuration settings for the render.
           additionalProperties: true
-    CombineClipsRequest:
-      type: object
-      required:
-      - clip_ids
-      properties:
-        clip_ids:
-          type: array
-          items:
-            type: string
-        pause:
-          type: number
-          description: Pause in seconds inserted between combined clips.
     Clip:
       type: object
       properties:
@@ -164,11 +152,23 @@ components:
         url:
           type: string
           description: URL of the rendered audio when available.
+    CombineClipsRequest:
+      type: object
+      required:
+      - clip_ids
+      properties:
+        clip_ids:
+          type: array
+          items:
+            type: string
+        pause:
+          type: number
+          description: Pause in seconds inserted between combined clips.
   responses:
-    Unauthorized:
-      description: API key missing or invalid.
     BadRequest:
       description: Request failed input validation.
+    Unauthorized:
+      description: API key missing or invalid.
     TooManyRequests:
       description: Rate limit exceeded.
   securitySchemes:

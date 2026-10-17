@@ -34,9 +34,6 @@ paths:
         '401':
           $ref: '#/components/responses/Unauthorized'
 components:
-  responses:
-    Unauthorized:
-      description: API key missing or invalid.
   schemas:
     Avatar:
       type: object
@@ -52,6 +49,9 @@ components:
         style:
           type: string
           description: Speaking style of the voice avatar.
+  responses:
+    Unauthorized:
+      description: API key missing or invalid.
   securitySchemes:
     ApiKeyAuth:
       type: apiKey
